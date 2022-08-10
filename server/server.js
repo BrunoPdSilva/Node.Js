@@ -1,8 +1,13 @@
+const _ = require("lodash");
 const http = require("http");
 const fs = require("fs");
 
 const server = http.createServer((req, res) => {
-  console.log("Request: ", req.url, req.method);
+  // Lodash
+  const num = _.random(0, 20);
+  const greet = _.once(() => {
+    console.log("Hello, world!");
+  });
 
   // Set Headers Content-Type
   res.setHeader("Content-Type", "text/html");
@@ -18,6 +23,11 @@ const server = http.createServer((req, res) => {
       path += "about.html";
       res.statusCode = 200;
       break;
+    case "/about-me":
+      res.statusCode = 301;
+      res.setHeader("Location", "/about");
+      res.end();
+      break;
     default:
       path += "404.html";
       res.statusCode = 404;
@@ -31,7 +41,7 @@ const server = http.createServer((req, res) => {
       res.end();
     } else {
       //res.write(data);
-      
+
       res.end(data);
     }
   });
