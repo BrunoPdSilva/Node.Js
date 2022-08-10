@@ -1,21 +1,19 @@
 const fs = require("fs");
 
 // Ler arquivos
-/* fs.readFile('./docs/blog1.txt', (err, data) => {
+fs.readFile("./docs/blog1.txt", (err, data) => {
   if (err) {
-    console.log(err)
+    console.log(err);
   }
-  console.log(data.toString())
-})
- */
+  console.log(data.toString());
+});
 
 // Criar arquivos
-/* fs.writeFile("./docs/blog1.txt", "Hello World!", (err, data) => {
-  console.log('file was written')
+fs.writeFile("./docs/blog1.txt", "Hello World!", (err, data) => {
+  console.log("file was written");
 });
- */
 
-// Diretórios
+// Criando diretórios
 if (!fs.existsSync("./assets")) {
   fs.mkdir("./assets", err => {
     if (err) {
@@ -23,7 +21,10 @@ if (!fs.existsSync("./assets")) {
     }
     console.log("folder created");
   });
-} else {
+}
+
+// Removendo diretórios
+if (fs.existsSync("./assets")) {
   fs.rmdir("./assets", err => {
     if (err) {
       console.log("folder deleted");
